@@ -26,8 +26,8 @@ if (mainForm !== null) {
 
 const sendTelegramMessage = async (message) => {
   try {
-    const botToken = '6507501531:AAFFcfuVXsPLFlYp7Z_wQGwBUGyeE2JOmMM';
-    const chatId = 514020962;
+    const botToken = '';
+    const chatId = '';
     const apiUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
 
     // Формируем тело запроса
