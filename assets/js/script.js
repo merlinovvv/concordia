@@ -1,14 +1,3 @@
-window.addEventListener("scroll", function() {
-  const header = document.querySelector(".firstscreen__header");
-  const scrollHeight = header?.offsetHeight
-  // Если прокручено больше 100 пикселей, меняем позиционирование на fixed
-  if (window.scrollY > scrollHeight) {
-    header.classList.add('fixed')
-  } else {
-    header.classList.remove('fixed')
-  }
-});
-
 // Меню бургер
 const menuBtns = document.querySelectorAll('.burger--btn');
 const menu = document.querySelector('.firstscreen__menu');
@@ -24,7 +13,12 @@ if (menuBtns && menu) {
 }
 
 //Слайдер свайпер
-new Swiper('.swiper');
+new Swiper('.swiper', {
+  navigation: {
+    nextEl: '.nav-bns__next',
+    prevEl: '.nav-bns__pred',
+  },
+});
 
 //Валідація
 var im = new Inputmask("+38 (999) 999-99-99");
@@ -272,7 +266,133 @@ document.addEventListener("DOMContentLoaded", function () {
     link.addEventListener("mouseleave", function () {
       // Скрываем изображение при убирании мыши
       sidebarImage.style.opacity = "0";
+      sidebarImage.src = '';
     });
   });
+
+  // Извлечение данных из таблицы и преобразование их в JSON с требуемой структурой
+  function tableToJson(table) {
+    const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
+    let jsonData = {};
+
+    // Инициализация JSON объекта для каждого дня недели
+    days.forEach(function(day, index) {
+      jsonData[day] = [];
+    });
+
+    // Проход по строкам таблицы (начиная со второй строки, так как первая содержит заголовки столбцов)
+    for (let i = 1; i < table.rows.length; i++) {
+      let tableRow = table.rows[i];
+      let time = tableRow.cells[0].textContent.trim();
+
+      // Проход по ячейкам с данными (начиная с первой ячейки после времени)
+      for (let j = 1; j < tableRow.cells.length; j++) {
+        let day = days[j - 1];
+        let className = tableRow.cells[j].textContent.trim();
+
+        // Если в ячейке есть данные, добавляем их в JSON структуру
+        if (className !== '') {
+          jsonData[day].push({time: time, class: className});
+        }
+      }
+    }
+
+    return jsonData;
+  }
+
+  const table = document.querySelector(".shedule__table-mobile").querySelector('table');
+  const jsonData = tableToJson(table);
+  console.log(jsonData); // Вывод JSON данных в консоль
+  const tableContainer = document.querySelector(".shedule__table-mobile")
+  if (jsonData){
+    for (let day in jsonData){
+      let newBlock = ''
+      let newDay = ''
+      switch (day) {
+        case 'monday':
+          newDay = 'Понеділок'
+          break;
+        case 'tuesday':
+          newDay = 'Віторок'
+          break;
+        case 'wednesday':
+          newDay = 'Середа'
+          break;
+        case 'thursday':
+          newDay = 'Четвер'
+          break;
+        case 'friday':
+          newDay = 'П`ятниця'
+          break;
+      }
+
+      const rows = jsonData[day].map((row) => {
+        return `<div class="day__row">
+              <div class="day__class day_">
+                ${row.class}
+              </div>
+              <div class="day__time day_">
+                ${row.time}
+              </div>
+            </div>`
+      })
+
+      newBlock =
+          `<div class="day__block-container">
+                <h5 class="day__block-title">${newDay}</h5>
+                <div class="day__block">
+                   ${rows.join('')}
+                </div>
+              </div>`
+
+      table.style.display = 'none'
+      tableContainer.innerHTML += newBlock
+    }
+  }
+
 });
 
+const mobileServicesBlock = document.querySelector('.main__mobile-content');
+
+const services = mobileServicesBlock.querySelectorAll('.service_block')
+
+services.forEach((serviceBlock, index) => {
+  if (index > 2 && mobileServicesBlock.className.includes('hidden')){
+    serviceBlock.classList.add('hidden')
+  }
+  const descOnClickButton = serviceBlock.querySelector('.desc_service_btn');
+
+  descOnClickButton.addEventListener('click', function (e) {
+    e.preventDefault();
+    const serviceHeader = serviceBlock.querySelector('.service__info-header');
+    const serviceDesc = serviceBlock.querySelector('.service__info-click');
+
+    serviceHeader.classList.toggle('hidden')
+    serviceDesc.classList.toggle('hidden')
+
+    if (serviceHeader.className.includes('hidden')){
+      descOnClickButton.querySelector('.red-button__text').innerText = 'назад'
+    } else {
+      descOnClickButton.querySelector('.red-button__text').innerText = 'опис'
+    }
+
+  })
+})
+
+const allServicesBtn = mobileServicesBlock.querySelector('.all_services_btn')
+
+allServicesBtn.addEventListener('click', function (e) {
+  e.preventDefault()
+  mobileServicesBlock.classList.toggle('hidden')
+  if (mobileServicesBlock.className.includes('hidden')){
+    allServicesBtn.querySelector('.red-button__text').innerText = 'Всі послуги'
+  } else {
+    allServicesBtn.querySelector('.red-button__text').innerText = 'Менше послуг'
+  }
+
+  services.forEach((serviceBlock, index) => {
+    if (index > 2){
+      serviceBlock.classList.toggle('hidden')
+    }
+  })
+})
