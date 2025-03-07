@@ -1,3 +1,14 @@
+window.addEventListener("scroll", function() {
+  const header = document.querySelector(".firstscreen__header");
+  const scrollHeight = header?.offsetHeight
+  // Если прокручено больше 100 пикселей, меняем позиционирование на fixed
+  if (window.scrollY > scrollHeight) {
+    header.classList.add('fixed')
+  } else {
+    header.classList.remove('fixed')
+  }
+});
+
 // Меню бургер
 const menuBtns = document.querySelectorAll('.burger--btn');
 const menu = document.querySelector('.firstscreen__menu');
