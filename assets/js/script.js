@@ -48,11 +48,21 @@ if (menuBtns && menu) {
 }
 
 //Слайдер свайпер
-new Swiper('.swiper', {
+new Swiper('.swiper-services', {
     navigation: {
         nextEl: '.nav-bns__next',
         prevEl: '.nav-bns__pred',
     },
+});
+
+new Swiper('.swiper-mobile-services', {
+    spaceBetween: 20,
+    slidesPerView: "auto",
+});
+
+new Swiper('.swiper-reviews', {
+    spaceBetween: 20,
+    slidesPerView: "auto",
 });
 
 //Валідація
@@ -385,9 +395,6 @@ const mobileServicesBlock = document.querySelector('.main__mobile-content');
 const services = mobileServicesBlock.querySelectorAll('.service_block')
 
 services.forEach((serviceBlock, index) => {
-    if (index > 2 && mobileServicesBlock.className.includes('hidden')) {
-        serviceBlock.classList.add('hidden')
-    }
     const descOnClickButton = serviceBlock.querySelector('.desc_service_btn');
 
     descOnClickButton.addEventListener('click', function (e) {
@@ -404,23 +411,5 @@ services.forEach((serviceBlock, index) => {
             descOnClickButton.querySelector('.red-button__text').innerText = 'опис'
         }
 
-    })
-})
-
-const allServicesBtn = mobileServicesBlock.querySelector('.all_services_btn')
-
-allServicesBtn.addEventListener('click', function (e) {
-    e.preventDefault()
-    mobileServicesBlock.classList.toggle('hidden')
-    if (mobileServicesBlock.className.includes('hidden')) {
-        allServicesBtn.querySelector('.red-button__text').innerText = 'Всі послуги'
-    } else {
-        allServicesBtn.querySelector('.red-button__text').innerText = 'Менше послуг'
-    }
-
-    services.forEach((serviceBlock, index) => {
-        if (index > 2) {
-            serviceBlock.classList.toggle('hidden')
-        }
     })
 })

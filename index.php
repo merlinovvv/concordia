@@ -104,9 +104,8 @@
                     </div>
                 </div>
             </div>
-            <div style="background-image: url(<?php echo bloginfo('template_url'); ?>/assets/images/menu__sculp.jpg);"
-                 class="menu__image-container">
-            </div>
+            <img src="<?php echo bloginfo('template_url'); ?>/assets/images/menu__sculp.jpg"
+                 class="menu__image-container"/>
 
 
             <svg class="menu__close burger--btn" xmlns="http://www.w3.org/2000/svg" width="27" height="27"
@@ -200,8 +199,8 @@
                 </svg>
                 <div class="red-button__eclipse">
                     <p class="red-button__text">
-                        записатися на <br/>
-                        практику
+                        переглянути <br/>
+                        послуги
                     </p>
                     <div class="red-button__arrow">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25"
@@ -564,15 +563,6 @@
                     Оберіть <br/>
                     послугу
                 </h4>
-                <p class="sidebar__desc">
-                    Для того, аби преглянути усі послуги - натискайте на круглі кнопки справа
-                    <br/><br/>
-                    Для того, аби преглянути детальний опис послуги - натисніть на неї
-                </p>
-            </div>
-
-            <div class="sidebar__bottom-content">
-
                 <div class="services__price-time">
                     <div class="bottom-content__note">
 
@@ -590,6 +580,14 @@
                         <div class="price-time__time time__3"></div>
                     </div>
                 </div>
+                <p class="sidebar__desc">
+                    Для того, аби преглянути усі послуги - натискайте на круглі кнопки справа
+                    <br/><br/>
+                    Для того, аби преглянути детальний опис послуги - натисніть на неї
+                </p>
+            </div>
+
+            <div class="sidebar__bottom-content">
                 <a target="_blank" href='<?php the_field('instagram_link'); ?>' class="sidebar__btn red-button">
                     <svg class="red-button__stroke" xmlns="http://www.w3.org/2000/svg" width="238" height="238"
                          viewBox="0 0 238 238" fill="none">
@@ -627,7 +625,7 @@
                 </p>
                 <h2 class="main__title">Our services</h2>
             </div>
-            <div class="main__swiper swiper">
+            <div class="main__swiper swiper swiper-services">
                 <div class="swiper__container swiper-wrapper">
                     <?php
                     $parent_category_id = 6;
@@ -695,24 +693,6 @@
                                     endif;
                                     ?>
                                 </div>
-                                <div class="content__nav-btns">
-                                    <?php if ($key === 0) { ?>
-                                        <div class="nav-bns__next">
-                                            <!-- Вывод кнопки только для первой категории -->
-                                        </div>
-                                    <?php } elseif ($key === $total_categories - 1) { ?>
-                                        <div class="nav-bns__pred">
-                                            <!-- Вывод кнопки только для последней категории -->
-                                        </div>
-                                    <?php } else { ?>
-                                        <div class="nav-bns__next">
-                                            <!-- Вывод обеих кнопок для промежуточных категорий -->
-                                        </div>
-                                        <div class="nav-bns__pred">
-                                            <!-- Вывод обеих кнопок для промежуточных категорий -->
-                                        </div>
-                                    <?php } ?>
-                                </div>
                             </div>
                         </div>
                         <?php
@@ -720,204 +700,194 @@
                     ?>
 
                 </div>
+                <div class="content__nav-btns">
+                    <div class="nav-bns__pred">
+                        <!-- Вывод обеих кнопок для промежуточных категорий -->
+                    </div>
+                    <div class="nav-bns__next">
+                        <!-- Вывод обеих кнопок для промежуточных категорий -->
+                    </div>
+                </div>
             </div>
             <button class="main__btn">Групові заняття</button>
             <div class="main__mobile-content hidden">
-                <?php
-                $parent_category_id = 6;
-
-                $args = array(
-                    'child_of' => $parent_category_id,
-                    'hide_empty' => 0,
-                    'orderby' => 'date',
-                    'order' => 'DESC'
-                );
-
-                $categories = get_categories($args);
-                $total_categories = count($categories);
-
-                foreach ($categories as $key => $category) {
-                    ?>
-                    <?php
-                    // Запрос записей внутри текущей дочерней рубрики
-                    $child_category_posts = new WP_Query(
-                        array(
-                            'category__in' => array($category->term_id),
-                            'posts_per_page' => -1,
-                            'orderby' => 'date',
-                            'order' => 'ASC'
-                        )
-                    );
-
-                    if ($child_category_posts->have_posts()):
-                        while ($child_category_posts->have_posts()):
-                            $child_category_posts->the_post();
-
-                            // Получение данных из групп полей ACF
-                            $title_service = get_field('title_service');
-                            $desc_service = get_field('desc_service');
-                            $price_service_1 = get_field('price_service_1');
-                            $price_service_2 = get_field('price_service_2');
-                            $price_service_3 = get_field('price_service_3');
-                            $duration_service_1 = get_field('duration_service_1');
-                            $duration_service_2 = get_field('duration_service_2');
-                            $duration_service_3 = get_field('duration_service_3');
-                            $postscript_service = get_field('postscript_service');
-                            $service_image = get_field('service_image')
-                            ?>
-                            <div class="service_block" data-title='<?php echo $title_service; ?>'
-                                 data-image="<?php echo $service_image; ?>"
-                                 data-desc="<?php echo $desc_service; ?>"
-                                 data-price-1="<?php echo $price_service_1; ?>"
-                                 data-price-2="<?php echo $price_service_2; ?>"
-                                 data-price-3="<?php echo $price_service_3; ?>"
-                                 data-duration-1="<?php echo $duration_service_1; ?>"
-                                 data-duration-2="<?php echo $duration_service_2; ?>"
-                                 data-duration-3="<?php echo $duration_service_3; ?>"
-                                 data-note='<?php echo $postscript_service; ?>'>
-                                <div class="service__image"
-                                     style="background-image: url(<?php echo $service_image; ?>)"></div>
-                                <span class="service__line"></span>
-                                <div class="service__info">
-                                    <div class="service__info-header">
-                                        <div class="service__info-title">
-                                            <?php the_title(); ?>
-                                        </div>
-                                        <div class="service__info-prices">
-                                            <div class="info__prices">
-                                                <?php if ($price_service_1 !== '') {
-                                                    ?>
-                                                    <div class="info-price prices_block"><?php echo $price_service_1; ?></div>
-                                                    <?php
-                                                } ?>
-                                                <?php if ($duration_service_1 !== '') {
-                                                    ?>
-                                                    <div class="info-time prices_block"><?php echo $duration_service_1; ?></div>
-                                                    <?php
-                                                } ?>
-                                            </div>
-                                            <div class="info__prices">
-                                                <?php if ($price_service_2 !== '') {
-                                                    ?>
-                                                    <div class="info-price prices_block"><?php echo $price_service_2; ?></div>
-                                                    <?php
-                                                } ?>
-                                                <?php if ($duration_service_2 !== '') {
-                                                    ?>
-                                                    <div class="info-time prices_block"><?php echo $duration_service_2; ?></div>
-                                                    <?php
-                                                } ?>
-                                            </div>
-                                            <div class="info__prices">
-                                                <?php if ($price_service_3 !== '') {
-                                                    ?>
-                                                    <div class="info-price prices_block"><?php echo $price_service_3; ?></div>
-                                                    <?php
-                                                } ?>
-                                                <?php if ($duration_service_3 !== '') {
-                                                    ?>
-                                                    <div class="info-time prices_block"><?php echo $duration_service_3; ?></div>
-                                                    <?php
-                                                } ?>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="service__info-click hidden">
-                                        <?php echo $desc_service; ?>
-                                    </div>
-                                    <div class="service__buttons">
-                                        <a target="_blank" href='<?php the_field('instagram_link', 2); ?>' class="service__btn red-button">
-                                            <svg class="red-button__stroke" xmlns="http://www.w3.org/2000/svg" width="238" height="238"
-                                                 viewBox="0 0 238 238" fill="none">
-                                                <path
-                                                        d="M237.5 119.163C237.5 184.518 184.446 237.5 119 237.5C53.5536 237.5 0.5 184.518 0.5 119.163C0.5 102.945 8.27007 90.8504 19.8945 80.9574C31.5361 71.0498 47.0026 63.3851 62.3208 56.037C63.2899 55.5721 64.2585 55.1084 65.2255 54.6456C79.5118 47.807 93.4517 41.1343 103.647 33.0672C114.417 24.5447 121.095 14.3951 119.558 0.780922C148.87 -1.6225 178.267 11.5731 200.393 33.5253C222.646 55.6038 237.5 86.4981 237.5 119.163Z"
-                                                        stroke="#FF1919"/>
-                                            </svg>
-                                            <div class="red-button__eclipse">
-                                                <p class="red-button__text">
-                                                    записатися
-                                                </p>
-                                                <div class="red-button__arrow">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25"
-                                                         fill="none">
-                                                        <path d="M0.738647 0.986816L23.9411 24.1574" stroke="white"
-                                                              stroke-width="0.515667"/>
-                                                        <mask id="path-2-inside-1_315_147" fill="white">
-                                                            <path d="M5.15723 5.39941H24.3084V24.5243H5.15723V5.39941Z"/>
-                                                        </mask>
-                                                        <path
-                                                                d="M24.3084 24.5243V25.5243H25.3084V24.5243H24.3084ZM23.3084 5.39941V24.5243H25.3084V5.39941H23.3084ZM24.3084 23.5243H5.15723V25.5243H24.3084V23.5243Z"
-                                                                fill="white" mask="url(#path-2-inside-1_315_147)"/>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a id="desc_service_btn" class="service__btn desc_service_btn red-button white">
-                                            <svg class="red-button__stroke" xmlns="http://www.w3.org/2000/svg" width="238" height="238"
-                                                 viewBox="0 0 238 238" fill="none">
-                                                <path
-                                                        d="M237.5 119.163C237.5 184.518 184.446 237.5 119 237.5C53.5536 237.5 0.5 184.518 0.5 119.163C0.5 102.945 8.27007 90.8504 19.8945 80.9574C31.5361 71.0498 47.0026 63.3851 62.3208 56.037C63.2899 55.5721 64.2585 55.1084 65.2255 54.6456C79.5118 47.807 93.4517 41.1343 103.647 33.0672C114.417 24.5447 121.095 14.3951 119.558 0.780922C148.87 -1.6225 178.267 11.5731 200.393 33.5253C222.646 55.6038 237.5 86.4981 237.5 119.163Z"
-                                                        stroke="#FF1919"/>
-                                            </svg>
-                                            <div class="red-button__eclipse">
-                                                <p class="red-button__text">
-                                                    опис
-                                                </p>
-                                                <div class="red-button__arrow">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25"
-                                                         fill="none">
-                                                        <path d="M0.738647 0.986816L23.9411 24.1574" stroke="white"
-                                                              stroke-width="0.515667"/>
-                                                        <mask id="path-2-inside-1_315_147" fill="white">
-                                                            <path d="M5.15723 5.39941H24.3084V24.5243H5.15723V5.39941Z"/>
-                                                        </mask>
-                                                        <path
-                                                                d="M24.3084 24.5243V25.5243H25.3084V24.5243H24.3084ZM23.3084 5.39941V24.5243H25.3084V5.39941H23.3084ZM24.3084 23.5243H5.15723V25.5243H24.3084V23.5243Z"
-                                                                fill="white" mask="url(#path-2-inside-1_315_147)"/>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </div>
+                <div class="swiper swiper-mobile-services">
+                    <div class="swiper-wrapper">
                         <?php
-                        endwhile;
-                        wp_reset_postdata(); // Сброс данных записей
-                    else:
-                        echo 'Послуг немає.';
-                    endif;
-                    ?>
-                    <?php
-                }
-                ?>
-                <div class="all_services_btn red-button">
-                    <svg class="red-button__stroke" xmlns="http://www.w3.org/2000/svg" width="238" height="238"
-                         viewBox="0 0 238 238" fill="none">
-                        <path
-                                d="M237.5 119.163C237.5 184.518 184.446 237.5 119 237.5C53.5536 237.5 0.5 184.518 0.5 119.163C0.5 102.945 8.27007 90.8504 19.8945 80.9574C31.5361 71.0498 47.0026 63.3851 62.3208 56.037C63.2899 55.5721 64.2585 55.1084 65.2255 54.6456C79.5118 47.807 93.4517 41.1343 103.647 33.0672C114.417 24.5447 121.095 14.3951 119.558 0.780922C148.87 -1.6225 178.267 11.5731 200.393 33.5253C222.646 55.6038 237.5 86.4981 237.5 119.163Z"
-                                stroke="#FF1919"/>
-                    </svg>
-                    <div class="red-button__eclipse">
-                        <p class="red-button__text">
-                            Всі послуги
-                        </p>
-                        <div class="red-button__arrow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25"
-                                 fill="none">
-                                <path d="M0.738647 0.986816L23.9411 24.1574" stroke="white"
-                                      stroke-width="0.515667"/>
-                                <mask id="path-2-inside-1_315_147" fill="white">
-                                    <path d="M5.15723 5.39941H24.3084V24.5243H5.15723V5.39941Z"/>
-                                </mask>
-                                <path
-                                        d="M24.3084 24.5243V25.5243H25.3084V24.5243H24.3084ZM23.3084 5.39941V24.5243H25.3084V5.39941H23.3084ZM24.3084 23.5243H5.15723V25.5243H24.3084V23.5243Z"
-                                        fill="white" mask="url(#path-2-inside-1_315_147)"/>
-                            </svg>
-                        </div>
+                        $parent_category_id = 6;
+
+                        $args = array(
+                            'child_of' => $parent_category_id,
+                            'hide_empty' => 0,
+                            'orderby' => 'date',
+                            'order' => 'DESC'
+                        );
+
+                        $categories = get_categories($args);
+                        $total_categories = count($categories);
+
+                        foreach ($categories as $key => $category) {
+                            ?>
+                            <?php
+                            // Запрос записей внутри текущей дочерней рубрики
+                            $child_category_posts = new WP_Query(
+                                array(
+                                    'category__in' => array($category->term_id),
+                                    'posts_per_page' => -1,
+                                    'orderby' => 'date',
+                                    'order' => 'ASC'
+                                )
+                            );
+
+                            if ($child_category_posts->have_posts()):
+                                while ($child_category_posts->have_posts()):
+                                    $child_category_posts->the_post();
+
+                                    // Получение данных из групп полей ACF
+                                    $title_service = get_field('title_service');
+                                    $desc_service = get_field('desc_service');
+                                    $price_service_1 = get_field('price_service_1');
+                                    $price_service_2 = get_field('price_service_2');
+                                    $price_service_3 = get_field('price_service_3');
+                                    $duration_service_1 = get_field('duration_service_1');
+                                    $duration_service_2 = get_field('duration_service_2');
+                                    $duration_service_3 = get_field('duration_service_3');
+                                    $postscript_service = get_field('postscript_service');
+                                    $service_image = get_field('service_image')
+                                    ?>
+                                    <div class="service_block swiper-slide" data-title='<?php echo $title_service; ?>'
+                                         data-image="<?php echo $service_image; ?>"
+                                         data-desc="<?php echo $desc_service; ?>"
+                                         data-price-1="<?php echo $price_service_1; ?>"
+                                         data-price-2="<?php echo $price_service_2; ?>"
+                                         data-price-3="<?php echo $price_service_3; ?>"
+                                         data-duration-1="<?php echo $duration_service_1; ?>"
+                                         data-duration-2="<?php echo $duration_service_2; ?>"
+                                         data-duration-3="<?php echo $duration_service_3; ?>"
+                                         data-note='<?php echo $postscript_service; ?>'>
+                                        <div class="service__image"
+                                             style="background-image: url(<?php echo $service_image; ?>)">
+                                            <div class="service__info-header">
+                                                <div class="service__info-title">
+                                                    <?php the_title(); ?>
+                                                </div>
+                                                <div class="service__info-prices">
+                                                    <div class="info__prices">
+                                                        <?php if ($price_service_1 !== '') {
+                                                            ?>
+                                                            <div class="info-price prices_block"><?php echo $price_service_1; ?></div>
+                                                            <?php
+                                                        } ?>
+                                                        <?php if ($duration_service_1 !== '') {
+                                                            ?>
+                                                            <div class="info-time prices_block"><?php echo $duration_service_1; ?></div>
+                                                            <?php
+                                                        } ?>
+                                                    </div>
+                                                    <div class="info__prices">
+                                                        <?php if ($price_service_2 !== '') {
+                                                            ?>
+                                                            <div class="info-price prices_block"><?php echo $price_service_2; ?></div>
+                                                            <?php
+                                                        } ?>
+                                                        <?php if ($duration_service_2 !== '') {
+                                                            ?>
+                                                            <div class="info-time prices_block"><?php echo $duration_service_2; ?></div>
+                                                            <?php
+                                                        } ?>
+                                                    </div>
+                                                    <div class="info__prices">
+                                                        <?php if ($price_service_3 !== '') {
+                                                            ?>
+                                                            <div class="info-price prices_block"><?php echo $price_service_3; ?></div>
+                                                            <?php
+                                                        } ?>
+                                                        <?php if ($duration_service_3 !== '') {
+                                                            ?>
+                                                            <div class="info-time prices_block"><?php echo $duration_service_3; ?></div>
+                                                            <?php
+                                                        } ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="service__info-click hidden">
+                                                <?php echo $desc_service; ?>
+                                            </div>
+                                            <div class="service__image-filter"></div>
+                                        </div>
+                                        <span class="service__line"></span>
+                                        <div class="service__info">
+
+                                            <div class="service__buttons">
+                                                <a target="_blank" href='<?php the_field('instagram_link', 2); ?>' class="service__btn red-button">
+                                                    <svg class="red-button__stroke" xmlns="http://www.w3.org/2000/svg" width="238" height="238"
+                                                         viewBox="0 0 238 238" fill="none">
+                                                        <path
+                                                                d="M237.5 119.163C237.5 184.518 184.446 237.5 119 237.5C53.5536 237.5 0.5 184.518 0.5 119.163C0.5 102.945 8.27007 90.8504 19.8945 80.9574C31.5361 71.0498 47.0026 63.3851 62.3208 56.037C63.2899 55.5721 64.2585 55.1084 65.2255 54.6456C79.5118 47.807 93.4517 41.1343 103.647 33.0672C114.417 24.5447 121.095 14.3951 119.558 0.780922C148.87 -1.6225 178.267 11.5731 200.393 33.5253C222.646 55.6038 237.5 86.4981 237.5 119.163Z"
+                                                                stroke="#FF1919"/>
+                                                    </svg>
+                                                    <div class="red-button__eclipse">
+                                                        <p class="red-button__text">
+                                                            записатися
+                                                        </p>
+                                                        <div class="red-button__arrow">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25"
+                                                                 fill="none">
+                                                                <path d="M0.738647 0.986816L23.9411 24.1574" stroke="white"
+                                                                      stroke-width="0.515667"/>
+                                                                <mask id="path-2-inside-1_315_147" fill="white">
+                                                                    <path d="M5.15723 5.39941H24.3084V24.5243H5.15723V5.39941Z"/>
+                                                                </mask>
+                                                                <path
+                                                                        d="M24.3084 24.5243V25.5243H25.3084V24.5243H24.3084ZM23.3084 5.39941V24.5243H25.3084V5.39941H23.3084ZM24.3084 23.5243H5.15723V25.5243H24.3084V23.5243Z"
+                                                                        fill="white" mask="url(#path-2-inside-1_315_147)"/>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                                <a id="desc_service_btn" class="service__btn desc_service_btn red-button white">
+                                                    <svg class="red-button__stroke" xmlns="http://www.w3.org/2000/svg" width="238" height="238"
+                                                         viewBox="0 0 238 238" fill="none">
+                                                        <path
+                                                                d="M237.5 119.163C237.5 184.518 184.446 237.5 119 237.5C53.5536 237.5 0.5 184.518 0.5 119.163C0.5 102.945 8.27007 90.8504 19.8945 80.9574C31.5361 71.0498 47.0026 63.3851 62.3208 56.037C63.2899 55.5721 64.2585 55.1084 65.2255 54.6456C79.5118 47.807 93.4517 41.1343 103.647 33.0672C114.417 24.5447 121.095 14.3951 119.558 0.780922C148.87 -1.6225 178.267 11.5731 200.393 33.5253C222.646 55.6038 237.5 86.4981 237.5 119.163Z"
+                                                                stroke="#FF1919"/>
+                                                    </svg>
+                                                    <div class="red-button__eclipse">
+                                                        <p class="red-button__text">
+                                                            опис
+                                                        </p>
+                                                        <div class="red-button__arrow">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25"
+                                                                 fill="none">
+                                                                <path d="M0.738647 0.986816L23.9411 24.1574" stroke="white"
+                                                                      stroke-width="0.515667"/>
+                                                                <mask id="path-2-inside-1_315_147" fill="white">
+                                                                    <path d="M5.15723 5.39941H24.3084V24.5243H5.15723V5.39941Z"/>
+                                                                </mask>
+                                                                <path
+                                                                        d="M24.3084 24.5243V25.5243H25.3084V24.5243H24.3084ZM23.3084 5.39941V24.5243H25.3084V5.39941H23.3084ZM24.3084 23.5243H5.15723V25.5243H24.3084V23.5243Z"
+                                                                        fill="white" mask="url(#path-2-inside-1_315_147)"/>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                <?php
+                                endwhile;
+                                wp_reset_postdata(); // Сброс данных записей
+                            else:
+                                echo 'Послуг немає.';
+                            endif;
+                            ?>
+                            <?php
+                        }
+                        ?>
                     </div>
                 </div>
+
                 <div class="shedule__table-mobile">
                     <?php
                     $post_id = 610;
@@ -1193,33 +1163,35 @@
             </div>
 
         </div>
-        <div class="swiper__mobile-swiper">
-            <?php
-            $reviews_query = new WP_Query($args);
+        <div class="swiper swiper-reviews">
+            <div class="swiper__mobile-swiper swiper-wrapper">
+                <?php
+                $reviews_query = new WP_Query($args);
 
-            if ($reviews_query->have_posts()):
-                while ($reviews_query->have_posts()):
-                    $reviews_query->the_post();
-                    $its_video = get_field('its_video'); // Получаем значение поля "its_video"
-                    if (!$its_video):
-                        ?>
-                        <div class="reviews__block">
-                            <div class="reviews__content">
-                                <p>
-                                    <?php the_field('review'); ?>
-                                    <br/>
-                                    <i>
-                                        <?php the_field('autor_review'); ?>
-                                    </i>
-                                </p>
+                if ($reviews_query->have_posts()):
+                    while ($reviews_query->have_posts()):
+                        $reviews_query->the_post();
+                        $its_video = get_field('its_video'); // Получаем значение поля "its_video"
+                        if (!$its_video):
+                            ?>
+                            <div class="reviews__block swiper-slide">
+                                <div class="reviews__content">
+                                    <p>
+                                        <?php the_field('review'); ?>
+                                        <br/>
+                                        <i>
+                                            <?php the_field('autor_review'); ?>
+                                        </i>
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                    <?php
-                    endif;
-                endwhile;
-                wp_reset_postdata(); // Сбрасываем данные после цикла
-            endif;
-            ?>
+                        <?php
+                        endif;
+                    endwhile;
+                    wp_reset_postdata(); // Сбрасываем данные после цикла
+                endif;
+                ?>
+            </div>
         </div>
         <div class="reviews__text">
             <div class="rewiews__title">

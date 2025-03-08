@@ -261,8 +261,9 @@ h6 {
     position: absolute;
     width: 100%;
     max-width: 40vw;
-    min-height: 100ch;
-    background-position: center;
+    min-height: 100vh;
+    object-position: center;
+    object-fit: cover;
 }
 
 .menu__image {
@@ -276,7 +277,7 @@ h6 {
 .menu__navigation {
     position: relative;
     max-width: max-content;
-    margin-top: -90px;
+    margin-top: -3vw;
 }
 
 .menu__block-title {
@@ -284,9 +285,9 @@ h6 {
 }
 
 .menu__title {
-    font-size: 17vw;
+    font-size: 12vw;
     font-weight: 400;
-    letter-spacing: -13.2px;
+    letter-spacing: -1vw;
     color: #000;
     z-index: 1;
     position: relative;
@@ -329,7 +330,7 @@ h6 {
     gap: 35px;
     width: 100%;
     max-width: 25vw;
-    margin-top: -25px;
+    margin-top: 0px;
     left: 25px;
     position: relative;
     z-index: 1;
@@ -952,7 +953,30 @@ h6 {
     font-size: 20px;
     font-weight: 400;
     margin-top: 72px;
-    max-width: 374px;
+    max-height: 311px;
+    overflow: auto;
+}
+
+.sidebar__desc::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+/* Фон скроллбара */
+.sidebar__desc::-webkit-scrollbar-track {
+    background: rgba(241, 241, 241, 0.6);
+    border-radius: 4px;
+}
+
+/* Ползунок */
+.sidebar__desc::-webkit-scrollbar-thumb {
+    background: #851c06;
+    border-radius: 4px;
+}
+
+/* При наведении */
+.sidebar__desc::-webkit-scrollbar-thumb:hover {
+    background: #9f2c14;
 }
 
 .sidebar__desc ul,
@@ -964,6 +988,7 @@ h6 {
 .services__main {
     max-width: 1197px;
     padding: 123px 0;
+    width: 100%;
 }
 
 .main__desc {
@@ -1035,7 +1060,31 @@ h6 {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    height: min-content;
+    overflow: auto;
+    height: 100%;
+    align-content: flex-start;
+}
+
+.content__attendances::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+/* Фон скроллбара */
+.content__attendances::-webkit-scrollbar-track {
+    background: rgba(241, 241, 241, 0.6);
+    border-radius: 4px;
+}
+
+/* Ползунок */
+.content__attendances::-webkit-scrollbar-thumb {
+    background: #851c06;
+    border-radius: 4px;
+}
+
+/* При наведении */
+.content__attendances::-webkit-scrollbar-thumb:hover {
+    background: #9f2c14;
 }
 
 .attendances_block {
@@ -1058,12 +1107,11 @@ h6 {
 }
 
 .content__nav-btns {
+    margin-top: 20px;
     display: flex;
     align-items: center;
-    flex-direction: column;
     gap: 40px;
-    justify-content: center;
-    height: 100%;
+    justify-content: space-between;
 }
 
 .nav-bns__next,
@@ -1072,14 +1120,24 @@ h6 {
     height: 87px;
     position: relative;
     border: 0.5px solid #FFF;
-    background: rgba(232, 232, 232, 0.10);
+    background: #BB2C09;
     border-radius: 50%;
     cursor: pointer;
+    transition: all 0.2s ease 0s;
+}
+
+.nav-bns__next.swiper-button-disabled,
+.nav-bns__pred.swiper-button-disabled {
+    opacity: 0;
+}
+
+.nav-bns__next{
+    margin-right: 30px;
 }
 
 .nav-bns__next:hover,
 .nav-bns__pred:hover {
-    background: rgba(232, 232, 232, 0.20);
+    background: rgba(187, 44, 9, 0.81);
 }
 
 .nav-bns__next:active,
@@ -1110,6 +1168,7 @@ h6 {
     align-items: flex-end;
     justify-content: space-between;
     width: 100%;
+    margin-top: 20px;
 }
 
 .main__btn {
@@ -1351,6 +1410,11 @@ h6 {
     color: #fff;
     position: relative;
     overflow: hidden;
+    width: 100%;
+}
+
+.swiper-reviews{
+    width: 100%;
 }
 
 .reviews__swiper {
@@ -1411,7 +1475,7 @@ h6 {
     border: 1px solid #fff;
     position: absolute;
     top: -10px;
-    right: -10px;
+    left: 10px;
     z-index: 1;
 }
 
@@ -1894,6 +1958,9 @@ h6 {
     font-weight: 400;
     letter-spacing: -1.12px;
     margin-bottom: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .box__line {
@@ -1980,7 +2047,8 @@ h6 {
 }
 
 .main__mobile-content {
-    display: none
+    display: none;
+    width: 100%;
 }
 
 .mobile-content__text {
@@ -2003,11 +2071,11 @@ h6 {
     display: none;
 }
 
-.footer__social {
-    display: none;
-}
-
 @media (max-width: 1707px) {
+
+    .menu__info{
+        margin-top: -50px;
+    }
 
     .sidebar__link {
         font-size: 18px;
@@ -2145,6 +2213,7 @@ h6 {
 
     .services__main {
         padding: 90px 0;
+
     }
 
     .price-time__price,
@@ -2189,6 +2258,10 @@ h6 {
 
     .reviews__content {
         font-size: 16px;
+        max-width: 296px;
+    }
+
+    .reviews__block::after {
         max-width: 296px;
     }
 
@@ -2380,6 +2453,9 @@ h6 {
 }
 
 @media (max-width: 1540px) {
+    .menu__info{
+        margin-top: -40px;
+    }
 
     .nav-bns__next,
     .nav-bns__pred {
@@ -2676,6 +2752,10 @@ h6 {
         max-width: 250px;
     }
 
+    .reviews__block::after {
+        max-width: 250px;
+    }
+
     .reviews__block i {
         font-size: 20.011px;
         margin-top: 5px;
@@ -2683,7 +2763,7 @@ h6 {
 
     .reviews__block::after {
         top: -5px;
-        right: -5px;
+        left: 5px;
     }
 
     .reviews__block {
@@ -2896,6 +2976,9 @@ h6 {
 }
 
 @media (max-width: 1397px) {
+    .menu__info{
+        margin-top: -40px;
+    }
     .reviews__swiper {
         display: flex;
         max-width: 100%;
@@ -3132,6 +3215,10 @@ h6 {
         max-width: 210px;
     }
 
+    .reviews__block::after {
+        max-width: 210px;
+    }
+
     .reviews__block i {
         font-size: 18.011px;
         margin-top: 5px;
@@ -3338,7 +3425,7 @@ h6 {
     }
 
     .menu__info {
-        margin-top: -20px;
+        margin-top: -8px;
     }
 
     .block__name {
@@ -3355,10 +3442,6 @@ h6 {
 
     .info__content:last-of-type {
         padding: 20px 0 0 0;
-    }
-
-    .menu__navigation {
-        margin-top: -60px;
     }
 }
 
@@ -3544,6 +3627,10 @@ h6 {
         padding: 10px;
     }
 
+    .reviews__block::after {
+        max-width: 193px;
+    }
+
     .swiper__column--left,
     .swiper__column--right {
         gap: 25px;
@@ -3710,7 +3797,7 @@ h6 {
     }
 
     .menu__title {
-        letter-spacing: -11.2px;
+        letter-spacing: -1vw;
     }
 
     .block__name {
@@ -4011,6 +4098,17 @@ h6 {
         border-top-right-radius: 15px;
         background-position: center;
         background-size: cover;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        position: relative;
+    }
+
+    .service__image-filter{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(0deg, rgba(187,44,9,0.5998774509803921) 50%, rgba(0,0,0,0) 100%);
     }
 
     .service__line {
@@ -4037,6 +4135,7 @@ h6 {
         gap: 10px;
         align-items: center;
         width: 100%;
+        z-index: 100;
     }
 
     .service__info-title {
@@ -4100,11 +4199,14 @@ h6 {
     }
 
     .service__info-click{
-        padding: 0 24px;
+        padding: 15px 24px;
         color: #fff;
-        font-size: 12px;
+        font-size: 14px;
         font-weight: 400;
         line-height: 14.09px;
+        z-index: 100;
+        height: 100%;
+        overflow: auto;
     }
 
     .service__info-click.hidden{
@@ -4193,9 +4295,10 @@ h6 {
 
     .swiper__mobile-swiper {
         display: flex;
-        flex-direction: column;
-        gap: 35px;
-        max-width: 242px;
+    }
+
+    .swiper-mobile-services{
+        width: 100%;
     }
 
     .reviews__swiper {
@@ -4235,6 +4338,11 @@ h6 {
         max-width: 242px;
     }
 
+    .reviews__block::after {
+        max-width: 242px;
+    }
+
+
     .reviews__block i {
         font-size: 25.011px;
         margin-top: 5px;
@@ -4243,11 +4351,12 @@ h6 {
     .reviews__block {
         margin-top: 10px;
         margin-bottom: 10px;
+        max-width: 242px;
     }
 
     .reviews__block::after {
         top: -10px;
-        right: -10px;
+        left: 10px;
     }
 
     .history__content {
@@ -4635,7 +4744,7 @@ h6 {
     }
 
     .menu__title {
-        font-size: 25vw;
+        font-size: 12vw;
     }
 
     .underline-box__line:first-of-type {
@@ -4710,13 +4819,13 @@ h6 {
     .menu__image-container {
         max-width: 75vh;
         left: 50%;
-        background-position: 40% center;
+        object-position: 40% center;
         min-height: 90ch;
     }
 
     .menu__title {
-        font-size: 25vw;
-        letter-spacing: -7px;
+        font-size: 12vw;
+        letter-spacing: -1vw;
     }
 
 
@@ -4875,7 +4984,7 @@ h6 {
     }
 
     .concept__right-text {
-        margin-top: 163vw;
+        margin-top: 95vw;
     }
 
     .ellipse-fire span {
@@ -4943,12 +5052,11 @@ h6 {
     }
 
     .consultation {
-        padding: 1000px 0px 0px;
+        padding: 700px 0px 0px;
     }
 
-
     .main__title {
-        font-size: 77px;
+        font-size: 20vw;
     }
 
     .content__box {
@@ -5032,10 +5140,17 @@ h6 {
 }
 
 @media (max-width: 375px) {
+    .firstscreen__bg{
+        max-width: 60vw;
+        height: 80vh;
+        object-position: left;
+        object-fit: cover;
+    }
+
     .menu__image-container {
         max-width: 75vh;
         left: 50%;
-        background-position: 40% 20%;
+        object-position: 40% 20%;
         min-height: 90ch;
     }
 }
