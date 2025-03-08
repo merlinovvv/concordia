@@ -1457,7 +1457,7 @@
                             <div class="data__box">
                                 <p class="box__name">instagram</p>
                                 <a target="_blank" class="box__link"
-                                   href="<?php the_field('owner_instagram_link'); ?>">@yulia.psywoman</a>
+                                   href="<?php the_field('owner_instagram_link'); ?>">@mazurenko_yulia_</a>
                             </div>
                         </div>
                     </div>
