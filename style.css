@@ -840,7 +840,7 @@ h6 {
 }
 
 .content__btn {
-    transform: translate(70%, 0);
+    transform: translate(-62%, 0);
 }
 
 .content__btn .red-button__eclipse {
@@ -2172,7 +2172,7 @@ h6 {
     }
 
     .content__btn {
-        transform: translate(8.6vw, 0vw);
+        transform: translate(-62%, 0);
     }
 
     .content__btn .red-button__eclipse {
