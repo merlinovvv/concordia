@@ -301,83 +301,87 @@
         </div>
     </div>
     <div class="consultation">
-        <div class="consultation__text">
-            <h4 class="consultation__title">
-                <?php the_field('title_consultation'); ?>
-            </h4>
-            <div class="consultation__desc">
-                <?php the_field('subtitle_consultation'); ?>
-            </div>
-        </div>
-        <div class="consultation__content">
-            <div class="content__text">
-                <?php the_field('subtitle2_consultation'); ?>
-            </div>
-            <div class="content__box">
-                <p>
-                    <?php the_field('block-text1_consultation'); ?>
-                </p>
-                <a target="_blank" href='<?php the_field('instagram_link'); ?>' class="content__btn red-button">
-                    <svg class="red-button__stroke" xmlns="http://www.w3.org/2000/svg" width="238" height="238"
-                         viewBox="0 0 238 238" fill="none">
-                        <path
-                                d="M237.5 119.163C237.5 184.518 184.446 237.5 119 237.5C53.5536 237.5 0.5 184.518 0.5 119.163C0.5 102.945 8.27007 90.8504 19.8945 80.9574C31.5361 71.0498 47.0026 63.3851 62.3208 56.037C63.2899 55.5721 64.2585 55.1084 65.2255 54.6456C79.5118 47.807 93.4517 41.1343 103.647 33.0672C114.417 24.5447 121.095 14.3951 119.558 0.780922C148.87 -1.6225 178.267 11.5731 200.393 33.5253C222.646 55.6038 237.5 86.4981 237.5 119.163Z"
-                                stroke="#FF1919"/>
-                    </svg>
-                    <div class="red-button__eclipse">
-                        <p class="red-button__text">
-                            в жіночому центрі <br/>
-                            «Concordia»
-                        </p>
-                        <div class="red-button__arrow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25"
-                                 fill="none">
-                                <path d="M0.738647 0.986816L23.9411 24.1574" stroke="white"
-                                      stroke-width="0.515667"/>
-                                <mask id="path-2-inside-1_315_147" fill="white">
-                                    <path d="M5.15723 5.39941H24.3084V24.5243H5.15723V5.39941Z"/>
-                                </mask>
-                                <path
-                                        d="M24.3084 24.5243V25.5243H25.3084V24.5243H24.3084ZM23.3084 5.39941V24.5243H25.3084V5.39941H23.3084ZM24.3084 23.5243H5.15723V25.5243H24.3084V23.5243Z"
-                                        fill="white" mask="url(#path-2-inside-1_315_147)"/>
-                            </svg>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="content__box content__box--second">
-                <p>
-                    <?php the_field('block-text2_consultation'); ?>
-                </p>
-                <a target="_blank" href='<?php the_field('instagram_link'); ?>' class="content__btn red-button">
-                    <svg class="red-button__stroke" xmlns="http://www.w3.org/2000/svg" width="238" height="238"
-                         viewBox="0 0 238 238" fill="none">
-                        <path
-                                d="M237.5 119.163C237.5 184.518 184.446 237.5 119 237.5C53.5536 237.5 0.5 184.518 0.5 119.163C0.5 102.945 8.27007 90.8504 19.8945 80.9574C31.5361 71.0498 47.0026 63.3851 62.3208 56.037C63.2899 55.5721 64.2585 55.1084 65.2255 54.6456C79.5118 47.807 93.4517 41.1343 103.647 33.0672C114.417 24.5447 121.095 14.3951 119.558 0.780922C148.87 -1.6225 178.267 11.5731 200.393 33.5253C222.646 55.6038 237.5 86.4981 237.5 119.163Z"
-                                stroke="#FF1919"/>
-                    </svg>
-                    <div class="red-button__eclipse">
-                        <p class="red-button__text">онлайн</p>
-                        <div class="red-button__arrow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25"
-                                 fill="none">
-                                <path d="M0.738647 0.986816L23.9411 24.1574" stroke="white"
-                                      stroke-width="0.515667"/>
-                                <mask id="path-2-inside-1_315_147" fill="white">
-                                    <path d="M5.15723 5.39941H24.3084V24.5243H5.15723V5.39941Z"/>
-                                </mask>
-                                <path
-                                        d="M24.3084 24.5243V25.5243H25.3084V24.5243H24.3084ZM23.3084 5.39941V24.5243H25.3084V5.39941H23.3084ZM24.3084 23.5243H5.15723V25.5243H24.3084V23.5243Z"
-                                        fill="white" mask="url(#path-2-inside-1_315_147)"/>
-                            </svg>
-                        </div>
-                    </div>
-                </a>
-                <div class="consultation__image-container">
-                    <img src="<?php echo bloginfo('template_url'); ?>/assets/images/owner-sculp.jpg" alt=""
-                         class="consultation__img"/>
+        <div class="consultation__container">
+            <div class="consultation__text">
+                <h4 class="consultation__title">
+                    <?php the_field('title_consultation'); ?>
+                </h4>
+                <div class="consultation__desc">
+                    <?php the_field('subtitle_consultation'); ?>
                 </div>
             </div>
+            <div class="consultation__content">
+                <div class="content__text">
+                    <?php the_field('subtitle2_consultation'); ?>
+                </div>
+                <div class="content__box">
+                    <p>
+                        <?php the_field('block-text1_consultation'); ?>
+                    </p>
+                    <a target="_blank" href='<?php the_field('instagram_link'); ?>' class="content__btn red-button">
+                        <svg class="red-button__stroke" xmlns="http://www.w3.org/2000/svg" width="238" height="238"
+                             viewBox="0 0 238 238" fill="none">
+                            <path
+                                    d="M237.5 119.163C237.5 184.518 184.446 237.5 119 237.5C53.5536 237.5 0.5 184.518 0.5 119.163C0.5 102.945 8.27007 90.8504 19.8945 80.9574C31.5361 71.0498 47.0026 63.3851 62.3208 56.037C63.2899 55.5721 64.2585 55.1084 65.2255 54.6456C79.5118 47.807 93.4517 41.1343 103.647 33.0672C114.417 24.5447 121.095 14.3951 119.558 0.780922C148.87 -1.6225 178.267 11.5731 200.393 33.5253C222.646 55.6038 237.5 86.4981 237.5 119.163Z"
+                                    stroke="#FF1919"/>
+                        </svg>
+                        <div class="red-button__eclipse">
+                            <p class="red-button__text">
+                                залишити <br/>
+                                заявку
+                            </p>
+                            <div class="red-button__arrow">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25"
+                                     fill="none">
+                                    <path d="M0.738647 0.986816L23.9411 24.1574" stroke="white"
+                                          stroke-width="0.515667"/>
+                                    <mask id="path-2-inside-1_315_147" fill="white">
+                                        <path d="M5.15723 5.39941H24.3084V24.5243H5.15723V5.39941Z"/>
+                                    </mask>
+                                    <path
+                                            d="M24.3084 24.5243V25.5243H25.3084V24.5243H24.3084ZM23.3084 5.39941V24.5243H25.3084V5.39941H23.3084ZM24.3084 23.5243H5.15723V25.5243H24.3084V23.5243Z"
+                                            fill="white" mask="url(#path-2-inside-1_315_147)"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+<!--                <div class="content__box content__box--second">-->
+                    <!--                <p>-->
+                    <!--                    --><?php //the_field('block-text2_consultation'); ?>
+                    <!--                </p>-->
+                    <!--                <a target="_blank" href='--><?php //the_field('instagram_link'); ?><!--' class="content__btn red-button">-->
+                    <!--                    <svg class="red-button__stroke" xmlns="http://www.w3.org/2000/svg" width="238" height="238"-->
+                    <!--                         viewBox="0 0 238 238" fill="none">-->
+                    <!--                        <path-->
+                    <!--                                d="M237.5 119.163C237.5 184.518 184.446 237.5 119 237.5C53.5536 237.5 0.5 184.518 0.5 119.163C0.5 102.945 8.27007 90.8504 19.8945 80.9574C31.5361 71.0498 47.0026 63.3851 62.3208 56.037C63.2899 55.5721 64.2585 55.1084 65.2255 54.6456C79.5118 47.807 93.4517 41.1343 103.647 33.0672C114.417 24.5447 121.095 14.3951 119.558 0.780922C148.87 -1.6225 178.267 11.5731 200.393 33.5253C222.646 55.6038 237.5 86.4981 237.5 119.163Z"-->
+                    <!--                                stroke="#FF1919"/>-->
+                    <!--                    </svg>-->
+                    <!--                    <div class="red-button__eclipse">-->
+                    <!--                        <p class="red-button__text">онлайн</p>-->
+                    <!--                        <div class="red-button__arrow">-->
+                    <!--                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25"-->
+                    <!--                                 fill="none">-->
+                    <!--                                <path d="M0.738647 0.986816L23.9411 24.1574" stroke="white"-->
+                    <!--                                      stroke-width="0.515667"/>-->
+                    <!--                                <mask id="path-2-inside-1_315_147" fill="white">-->
+                    <!--                                    <path d="M5.15723 5.39941H24.3084V24.5243H5.15723V5.39941Z"/>-->
+                    <!--                                </mask>-->
+                    <!--                                <path-->
+                    <!--                                        d="M24.3084 24.5243V25.5243H25.3084V24.5243H24.3084ZM23.3084 5.39941V24.5243H25.3084V5.39941H23.3084ZM24.3084 23.5243H5.15723V25.5243H24.3084V23.5243Z"-->
+                    <!--                                        fill="white" mask="url(#path-2-inside-1_315_147)"/>-->
+                    <!--                            </svg>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!--                </a>-->
+
+<!--                </div>-->
+            </div>
+        </div>
+
+        <div class="consultation__image-container">
+            <img src="<?php echo bloginfo('template_url'); ?>/assets/images/owner-sculp.jpg" alt=""
+                 class="consultation__img"/>
         </div>
     </div>
     <div class="marquees">
