@@ -99,7 +99,7 @@
                         <div class="content__block content__block--third">
                             <p class="block__name">instagram</p>
                             <a target="_blank" href="<?php the_field('owner_instagram_link'); ?>"
-                               class="block__link">@yulia.psywoman</a>
+                               class="block__link">@mazurenko_yulia_</a>
                         </div>
                     </div>
                 </div>
