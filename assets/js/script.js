@@ -4,6 +4,7 @@ const notyf = new Notyf({
         x: 'right',
         y: 'top',
     },
+    className: 'toast',
     types: [
         {
             type: 'success',
@@ -22,16 +23,42 @@ const notyf = new Notyf({
     ]
 });
 
-window.addEventListener("scroll", function () {
+function handleScroll() {
     const header = document.querySelector(".firstscreen__header");
-    const scrollHeight = header?.offsetHeight
-    // Если прокручено больше 100 пикселей, меняем позиционирование на fixed
-    if (window.scrollY > scrollHeight) {
-        header.classList.add('fixed')
+    const mainContent = document.querySelector(".firstscreen__content");
+
+    if (!header || !mainContent) return;
+
+    const scrollHeight = header.offsetHeight;
+    const isScrolled = window.scrollY > scrollHeight;
+
+    if (isScrolled) {
+        header.classList.add("fixed");
     } else {
-        header.classList.remove('fixed')
+        header.classList.remove("fixed");
+    }
+
+    const paddingTop = window.innerWidth > 550
+        ? `calc(17vw + ${isScrolled ? scrollHeight : 0}px)`
+        : `calc(230px + ${isScrolled ? scrollHeight : 0}px)`;
+
+    if (mainContent.style.paddingTop !== paddingTop) {
+        mainContent.style.paddingTop = paddingTop;
+    }
+}
+
+// Используем requestAnimationFrame для оптимизации
+let ticking = false;
+window.addEventListener("scroll", function () {
+    if (!ticking) {
+        requestAnimationFrame(() => {
+            handleScroll();
+            ticking = false;
+        });
+        ticking = true;
     }
 });
+
 
 // Меню бургер
 const menuBtns = document.querySelectorAll('.burger--btn');
@@ -65,13 +92,13 @@ new Swiper('.swiper-reviews', {
     slidesPerView: "auto",
 });
 
-//Валідація
-var im = new Inputmask("+38 (999) 999-99-99");
+const im = new Inputmask("+38 (999) 999-99-99");
+const tels = document.querySelectorAll('input[type="tel"]');
 
-var mainForm = document.querySelector('.consul-form__form');
-if (mainForm !== null) {
-    var telMain = mainForm.querySelector('input[type="tel"]');
-    im.mask(telMain);
+if (tels && tels?.length > 0) {
+    tels?.forEach(tel => {
+        im.mask(tel);
+    })
 }
 
 const sendTelegramMessage = async (message) => {
@@ -101,25 +128,47 @@ const sendTelegramMessage = async (message) => {
 };
 
 // Отримуємо форму
-const form = document.getElementById('contact-form');
+const forms = [document.getElementById('contact-form'), document.getElementById('activity-form')];
 
-// Підключаємо обробник події на відправку форми
-form.addEventListener('submit', (event) => {
-    // Зупиняємо стандартну поведінку форми
-    event.preventDefault();
+forms.forEach(form => {
+    // Підключаємо обробник події на відправку форми
+    form.addEventListener('submit', (event) => {
+        // Зупиняємо стандартну поведінку форми
+        event.preventDefault();
 
-    // Отримуємо дані форми
-    const formData = new FormData(form);
+        // Перевірка на обов'язкові поля (як приклад)
+        const formData = new FormData(form);
+        const isValid = validateForm(formData);
 
-    // Формируем сообщение для отправки в Telegram
-    let message = '*Нова заявка з сайту:*\n';
-    for (const [name, value] of formData.entries()) {
-        message += `*${name}*: ${value}\n`;
-    }
+        if (!isValid) {
+            alert('Будь ласка, заповніть всі обов\'язкові поля.');
+            return;
+        }
 
-    // Отправляем сообщение в Telegram
-    sendTelegramMessage(message);
+        // Формуємо повідомлення для відправки в Telegram
+        let message = '*Нова заявка з сайту:*\n';
+        for (const [name, value] of formData.entries()) {
+            message += `*${name}*: ${value}\n`;
+        }
+
+        // Відправляємо повідомлення в Telegram
+        sendTelegramMessage(message);
+    });
 });
+
+// Функція для валідації форми (приклад)
+function validateForm(formData) {
+    let isValid = true;
+
+    // Приклад перевірки обов'язкових полів
+    formData.forEach((value, name) => {
+        if (name === 'required_field' && !value) {
+            isValid = false;
+        }
+    });
+
+    return isValid;
+}
 
 // Звук видео
 const soundOffBtns = document.querySelectorAll('.video__soundoff');
@@ -172,10 +221,10 @@ for (let anchor of anchors) {
     })
 }
 
-
 document.addEventListener("DOMContentLoaded", function () {
     const attendancesBlocks = document.querySelectorAll(".attendances_block");
     const sidebarTitle = document.querySelector(".sidebar__title");
+    const sidebarBtn = document.querySelector(".sidebar__btn");
     const sidebarDesc = document.querySelector(".sidebar__desc");
     const sidebarNote = document.querySelector(".bottom-content__note");
 
@@ -262,6 +311,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }, 200);
 
             sidebarTitle.innerHTML = title;
+            sidebarBtn.setAttribute('data-selected-activity', title);
             sidebarDesc.innerHTML = desc;
             sidebarNote.innerHTML = block.getAttribute("data-note");
         });
@@ -340,7 +390,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const table = document.querySelector(".shedule__table-mobile").querySelector('table');
     const jsonData = tableToJson(table);
-    console.log(jsonData); // Вывод JSON данных в консоль
     const tableContainer = document.querySelector(".shedule__table-mobile")
     if (jsonData) {
         for (let day in jsonData) {

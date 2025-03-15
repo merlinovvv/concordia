@@ -1,4 +1,7 @@
 @charset "UTF-8";
+@import url('./assets/fonts/Cormorant/stylesheet.css');
+@import url('./assets/fonts/Inter/stylesheet.css');
+@import url('./assets/fonts/Raleway/stylesheet.css');
 
 /*
 Theme Name: Concordia
@@ -2074,6 +2077,201 @@ h6 {
 
 .mobile-menu-btn {
     display: none;
+}
+
+.modal{
+    z-index: 10000;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(10px);
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.25);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-200%);
+    transition: all 0.3s ease 0s;
+}
+
+.modal.modal--active{
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0);
+}
+
+body.modal-open{
+    overflow: hidden;
+}
+
+.modal__window{
+    padding: 20px;
+    border-radius: 20px;
+    background: #fff;
+    max-width: 769px;
+    width: 100%;
+}
+
+.modal__header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.modal__title{
+    font-size: 30px;
+    font-weight: bold;
+    color: #000;
+}
+
+.modal__close{
+    font-size: 50px;
+    color: #000;
+    transition: all 0.2s ease 0s;
+    line-height: 22px;
+}
+
+.modal__close:hover{
+    color: #BB2C09;
+}
+
+.modal__content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modal__form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modal__inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 54px;
+    max-width: 474px;
+    width: 100%;
+}
+
+.modal__input,
+.modal__textarea {
+    border-bottom: 1px solid #404040;
+    padding-bottom: 8px;
+    width: 100%;
+    max-height: 31px;
+    max-width: 474px;
+    resize: none;
+    font-size: 20px;
+    font-weight: 400;
+    color: #000;
+    overflow: hidden;
+}
+
+.modal__input::placeholder,
+.modal__textarea::placeholder {
+    color: #404040;
+}
+
+.modal__input:focus::placeholder,
+.modal__textarea:focus::placeholder {
+    color: transparent;
+}
+
+.dropdown {
+    position: relative;
+    width: 100%;
+}
+
+.dropdown__input {
+    width: 100%;
+    cursor: pointer;
+    border-bottom: 1px solid #404040;
+    padding-bottom: 8px;
+    max-height: 31px;
+    max-width: 474px;
+    resize: none;
+    font-size: 20px;
+    font-weight: 400;
+    color: #000;
+    overflow: hidden;
+}
+
+.dropdown__list {
+    display: none;
+    position: absolute;
+    width: 100%;
+    background: white;
+    border: 1px solid #ccc;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 250px;
+    overflow: auto;
+}
+
+.dropdown__list--visible {
+    display: block;
+}
+
+.dropdown__item {
+    padding: 8px;
+    cursor: pointer;
+    display: flex;
+    gap: 15px;
+    transition: all 0.2s ease 0s;
+}
+
+.dropdown__item:hover {
+    background: rgba(187, 44, 9, 0.1);
+}
+
+.dropdown__item--selected {
+    background: rgba(187, 44, 9, 0.75);
+    color: #fff;
+}
+
+.dropdown__item.dropdown__item--selected:hover{
+    background: rgba(187, 44, 9, 0.85);
+    color: #fff;
+}
+
+.dropdown__item-img{
+    width: 70px;
+    height: 70px;
+    border-radius: 12px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.modal__button{
+    background: #BB2C09;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 10px 0;
+    color: #fff;
+    font-size: 20px;
+    transition: all 0.2s ease 0s;
+}
+
+.modal__button:hover{
+    background: #B81900;
+}
+
+.notyf{
+    z-index: 10000000;
 }
 
 @media (max-width: 1707px) {

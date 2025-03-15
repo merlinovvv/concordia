@@ -7,9 +7,6 @@
     <title>
         <?php bloginfo('name') ?>
     </title>
-    <link
-            href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@200;300;400;500&family=Raleway:wght@400;500&display=swap"
-            rel="stylesheet"/>
     <?php
     wp_head();
     ?>
@@ -190,7 +187,7 @@
         <h1 class="firstscreen__title">
             <span>Concordia</span>
 
-            <a href="#services" class="firstscreen__btn red-button">
+            <a href="#choose-activity" class="firstscreen__btn red-button">
                 <svg class="red-button__stroke" xmlns="http://www.w3.org/2000/svg" width="238" height="238"
                      viewBox="0 0 238 238" fill="none">
                     <path
@@ -199,8 +196,8 @@
                 </svg>
                 <div class="red-button__eclipse">
                     <p class="red-button__text">
-                        переглянути <br/>
-                        послуги
+                        записатись на <br/>
+                        заняття
                     </p>
                     <div class="red-button__arrow">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25"
@@ -346,36 +343,6 @@
                         </div>
                     </a>
                 </div>
-<!--                <div class="content__box content__box--second">-->
-                    <!--                <p>-->
-                    <!--                    --><?php //the_field('block-text2_consultation'); ?>
-                    <!--                </p>-->
-                    <!--                <a target="_blank" href='--><?php //the_field('instagram_link'); ?><!--' class="content__btn red-button">-->
-                    <!--                    <svg class="red-button__stroke" xmlns="http://www.w3.org/2000/svg" width="238" height="238"-->
-                    <!--                         viewBox="0 0 238 238" fill="none">-->
-                    <!--                        <path-->
-                    <!--                                d="M237.5 119.163C237.5 184.518 184.446 237.5 119 237.5C53.5536 237.5 0.5 184.518 0.5 119.163C0.5 102.945 8.27007 90.8504 19.8945 80.9574C31.5361 71.0498 47.0026 63.3851 62.3208 56.037C63.2899 55.5721 64.2585 55.1084 65.2255 54.6456C79.5118 47.807 93.4517 41.1343 103.647 33.0672C114.417 24.5447 121.095 14.3951 119.558 0.780922C148.87 -1.6225 178.267 11.5731 200.393 33.5253C222.646 55.6038 237.5 86.4981 237.5 119.163Z"-->
-                    <!--                                stroke="#FF1919"/>-->
-                    <!--                    </svg>-->
-                    <!--                    <div class="red-button__eclipse">-->
-                    <!--                        <p class="red-button__text">онлайн</p>-->
-                    <!--                        <div class="red-button__arrow">-->
-                    <!--                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25"-->
-                    <!--                                 fill="none">-->
-                    <!--                                <path d="M0.738647 0.986816L23.9411 24.1574" stroke="white"-->
-                    <!--                                      stroke-width="0.515667"/>-->
-                    <!--                                <mask id="path-2-inside-1_315_147" fill="white">-->
-                    <!--                                    <path d="M5.15723 5.39941H24.3084V24.5243H5.15723V5.39941Z"/>-->
-                    <!--                                </mask>-->
-                    <!--                                <path-->
-                    <!--                                        d="M24.3084 24.5243V25.5243H25.3084V24.5243H24.3084ZM23.3084 5.39941V24.5243H25.3084V5.39941H23.3084ZM24.3084 23.5243H5.15723V25.5243H24.3084V23.5243Z"-->
-                    <!--                                        fill="white" mask="url(#path-2-inside-1_315_147)"/>-->
-                    <!--                            </svg>-->
-                    <!--                        </div>-->
-                    <!--                    </div>-->
-                    <!--                </a>-->
-
-<!--                </div>-->
             </div>
         </div>
 
@@ -592,7 +559,7 @@
             </div>
 
             <div class="sidebar__bottom-content">
-                <a target="_blank" href='<?php the_field('instagram_link'); ?>' class="sidebar__btn red-button">
+                <a target="_blank" data-selected-activity="" href='#choose-activity' class="sidebar__btn red-button">
                     <svg class="red-button__stroke" xmlns="http://www.w3.org/2000/svg" width="238" height="238"
                          viewBox="0 0 238 238" fill="none">
                         <path
@@ -823,8 +790,10 @@
                                         <div class="service__info">
 
                                             <div class="service__buttons">
-                                                <a target="_blank" href='<?php the_field('instagram_link', 2); ?>' class="service__btn red-button">
-                                                    <svg class="red-button__stroke" xmlns="http://www.w3.org/2000/svg" width="238" height="238"
+                                                <a target="_blank" href='<?php the_field('instagram_link', 2); ?>'
+                                                   class="service__btn red-button">
+                                                    <svg class="red-button__stroke" xmlns="http://www.w3.org/2000/svg"
+                                                         width="238" height="238"
                                                          viewBox="0 0 238 238" fill="none">
                                                         <path
                                                                 d="M237.5 119.163C237.5 184.518 184.446 237.5 119 237.5C53.5536 237.5 0.5 184.518 0.5 119.163C0.5 102.945 8.27007 90.8504 19.8945 80.9574C31.5361 71.0498 47.0026 63.3851 62.3208 56.037C63.2899 55.5721 64.2585 55.1084 65.2255 54.6456C79.5118 47.807 93.4517 41.1343 103.647 33.0672C114.417 24.5447 121.095 14.3951 119.558 0.780922C148.87 -1.6225 178.267 11.5731 200.393 33.5253C222.646 55.6038 237.5 86.4981 237.5 119.163Z"
@@ -835,22 +804,27 @@
                                                             записатися
                                                         </p>
                                                         <div class="red-button__arrow">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25"
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="25"
+                                                                 height="25" viewBox="0 0 25 25"
                                                                  fill="none">
-                                                                <path d="M0.738647 0.986816L23.9411 24.1574" stroke="white"
+                                                                <path d="M0.738647 0.986816L23.9411 24.1574"
+                                                                      stroke="white"
                                                                       stroke-width="0.515667"/>
                                                                 <mask id="path-2-inside-1_315_147" fill="white">
                                                                     <path d="M5.15723 5.39941H24.3084V24.5243H5.15723V5.39941Z"/>
                                                                 </mask>
                                                                 <path
                                                                         d="M24.3084 24.5243V25.5243H25.3084V24.5243H24.3084ZM23.3084 5.39941V24.5243H25.3084V5.39941H23.3084ZM24.3084 23.5243H5.15723V25.5243H24.3084V23.5243Z"
-                                                                        fill="white" mask="url(#path-2-inside-1_315_147)"/>
+                                                                        fill="white"
+                                                                        mask="url(#path-2-inside-1_315_147)"/>
                                                             </svg>
                                                         </div>
                                                     </div>
                                                 </a>
-                                                <a id="desc_service_btn" class="service__btn desc_service_btn red-button white">
-                                                    <svg class="red-button__stroke" xmlns="http://www.w3.org/2000/svg" width="238" height="238"
+                                                <a id="desc_service_btn"
+                                                   class="service__btn desc_service_btn red-button white">
+                                                    <svg class="red-button__stroke" xmlns="http://www.w3.org/2000/svg"
+                                                         width="238" height="238"
                                                          viewBox="0 0 238 238" fill="none">
                                                         <path
                                                                 d="M237.5 119.163C237.5 184.518 184.446 237.5 119 237.5C53.5536 237.5 0.5 184.518 0.5 119.163C0.5 102.945 8.27007 90.8504 19.8945 80.9574C31.5361 71.0498 47.0026 63.3851 62.3208 56.037C63.2899 55.5721 64.2585 55.1084 65.2255 54.6456C79.5118 47.807 93.4517 41.1343 103.647 33.0672C114.417 24.5447 121.095 14.3951 119.558 0.780922C148.87 -1.6225 178.267 11.5731 200.393 33.5253C222.646 55.6038 237.5 86.4981 237.5 119.163Z"
@@ -861,16 +835,19 @@
                                                             опис
                                                         </p>
                                                         <div class="red-button__arrow">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25"
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="25"
+                                                                 height="25" viewBox="0 0 25 25"
                                                                  fill="none">
-                                                                <path d="M0.738647 0.986816L23.9411 24.1574" stroke="white"
+                                                                <path d="M0.738647 0.986816L23.9411 24.1574"
+                                                                      stroke="white"
                                                                       stroke-width="0.515667"/>
                                                                 <mask id="path-2-inside-1_315_147" fill="white">
                                                                     <path d="M5.15723 5.39941H24.3084V24.5243H5.15723V5.39941Z"/>
                                                                 </mask>
                                                                 <path
                                                                         d="M24.3084 24.5243V25.5243H25.3084V24.5243H24.3084ZM23.3084 5.39941V24.5243H25.3084V5.39941H23.3084ZM24.3084 23.5243H5.15723V25.5243H24.3084V23.5243Z"
-                                                                        fill="white" mask="url(#path-2-inside-1_315_147)"/>
+                                                                        fill="white"
+                                                                        mask="url(#path-2-inside-1_315_147)"/>
                                                             </svg>
                                                         </div>
                                                     </div>
@@ -989,7 +966,8 @@
                             </div>
                         </div>
                     </div>
-                    <a target="_blank" href='<?php the_field('instagram_link'); ?>' class="sidebar-schedule__btn red-button">
+                    <a target="_blank" href='<?php the_field('instagram_link'); ?>'
+                       class="sidebar-schedule__btn red-button">
                         <svg class="red-button__stroke" xmlns="http://www.w3.org/2000/svg" width="238" height="238"
                              viewBox="0 0 238 238" fill="none">
                             <path
@@ -1345,8 +1323,8 @@
                     </p>
                 </div>
                 <div class="main__inputs">
-                    <input placeholder="Ваше ім' я" name="Ім'я" type="text" class="main__input"/>
-                    <input placeholder="Ваше номер телефону" name="Телефон" type="tel" class="main__input"/>
+                    <input required placeholder="Ваше ім' я" name="Ім'я" type="text" class="main__input"/>
+                    <input required placeholder="Ваше номер телефону" name="Телефон" type="tel" class="main__input"/>
                     <textarea placeholder="Повідомлення для Юлії" name="Повідомлення" id=""
                               class="main__input main__textarea"></textarea>
                 </div>
@@ -1508,6 +1486,95 @@
         </div>
         <div class="footer__ellipse"></div>
     </footer>
+    <div id="choose-activity" class="modal">
+        <div class="modal__window">
+            <div class="modal__header">
+                <h3 class="modal__title">Запишіться на заняття</h3>
+                <button class="modal__close">×</button>
+            </div>
+            <div class="modal__content">
+                <form id="activity-form" method="POST" class="modal__form">
+                    <div class="modal__inputs">
+                        <input required placeholder="Ваше ім'я" name="Ім'я" type="text" class="modal__input"/>
+                        <input required placeholder="Ваше номер телефону" name="Телефон" type="tel" class="modal__input"/>
+                        <div class="dropdown">
+                            <input required readonly name="Заняття" type="text" class="dropdown__input" placeholder="Оберіть заняття...">
+                            <ul class="dropdown__list">
+                                <?php
+                                $parent_category_id = 6;
+
+                                $args = array(
+                                    'child_of' => $parent_category_id,
+                                    'hide_empty' => 0,
+                                    'orderby' => 'date',
+                                    'order' => 'DESC'
+                                );
+
+                                $categories = get_categories($args);
+
+                                if (!empty($categories)) {
+                                    foreach ($categories as $category) {
+                                        $child_category_posts = new WP_Query(array(
+                                            'category__in' => array($category->term_id),
+                                            'posts_per_page' => -1,
+                                            'orderby' => 'date',
+                                            'order' => 'ASC'
+                                        ));
+
+                                        if ($child_category_posts->have_posts()):
+                                            while ($child_category_posts->have_posts()):
+                                                $child_category_posts->the_post();
+
+                                                // Получение данных из ACF
+                                                $title_service = get_field('title_service') ?: 'Без назви';
+                                                $desc_service = get_field('desc_service');
+                                                $price_service_1 = get_field('price_service_1');
+                                                $price_service_2 = get_field('price_service_2');
+                                                $price_service_3 = get_field('price_service_3');
+                                                $duration_service_1 = get_field('duration_service_1');
+                                                $duration_service_2 = get_field('duration_service_2');
+                                                $duration_service_3 = get_field('duration_service_3');
+                                                $service_image = get_field('service_image') ?: 'default.jpg';
+                                                ?>
+                                                <li data-value="<?php echo esc_attr($title_service); ?>" class="dropdown__item">
+                                                    <img class="dropdown__item-img" src="<?php echo esc_url($service_image); ?>"
+                                                         alt="<?php echo esc_attr($title_service); ?>">
+                                                    <div class="dropdown__item-info">
+                                                        <div class="dropdown__item-info__title">
+                                                            <?php echo esc_html($title_service); ?>
+                                                        </div>
+                                                        <div class="dropdown__item-info-price">
+                                                            <?php if (!empty($price_service_1) && !empty($duration_service_1)): ?>
+                                                                <div><?php echo esc_html($price_service_1 . ' - ' . $duration_service_1); ?></div>
+                                                            <?php endif; ?>
+                                                            <?php if (!empty($price_service_2) && !empty($duration_service_2)): ?>
+                                                                <div><?php echo esc_html($price_service_2 . ' - ' . $duration_service_2); ?></div>
+                                                            <?php endif; ?>
+                                                            <?php if (!empty($price_service_3) && !empty($duration_service_3)): ?>
+                                                                <div><?php echo esc_html($price_service_3 . ' - ' . $duration_service_3); ?></div>
+                                                            <?php endif; ?>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            <?php endwhile;
+                                            wp_reset_postdata();
+                                        else: ?>
+                                            <li class="dropdown__item no-services">Послуг немає.</li>
+                                        <?php endif;
+                                    }
+                                } else { ?>
+                                    <li class="dropdown__item no-services">Категорії відсутні.</li>
+                                <?php } ?>
+                            </ul>
+                        </div>
+                        <textarea placeholder="Повідомлення для Юлії" name="Повідомлення" id=""
+                                  class="modal__input modal__textarea"></textarea>
+                        <button type="submit" class="modal__button">Надіслати заявку</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 <script>
     window.botToken = <?php echo json_encode(get_field('bot_token')); ?>;
