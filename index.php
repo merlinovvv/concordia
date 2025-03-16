@@ -1493,7 +1493,7 @@
                 <button class="modal__close">×</button>
             </div>
             <div class="modal__content">
-                <form id="activity-form" method="POST" class="modal__form">
+                <form id="service-form" method="POST" class="modal__form">
                     <div class="modal__inputs">
                         <input required placeholder="Ваше ім'я" name="Ім'я" type="text" class="modal__input"/>
                         <input required placeholder="Ваше номер телефону" name="Телефон" type="tel" class="modal__input"/>

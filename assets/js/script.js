@@ -128,7 +128,7 @@ const sendTelegramMessage = async (message) => {
 };
 
 // Отримуємо форму
-const forms = [document.getElementById('contact-form'), document.getElementById('activity-form')];
+const forms = [document.getElementById('contact-form'), document.getElementById('activity-form'), document.getElementById('service-form')];
 
 forms.forEach(form => {
     // Підключаємо обробник події на відправку форми
