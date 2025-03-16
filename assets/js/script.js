@@ -417,7 +417,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const rows = jsonData[day].map((row) => {
                 return `<div class="day__row">
               <div class="day__class day_">
-                ${row.class}
+                <a href="#choose-activity" data-selected-activity="${row.class}, ${newDay}, ${row.time}">${row.class}</a>
               </div>
               <div class="day__time day_">
                 ${row.time}

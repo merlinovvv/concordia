@@ -790,7 +790,7 @@
                                         <div class="service__info">
 
                                             <div class="service__buttons">
-                                                <a target="_blank" href='<?php the_field('instagram_link', 2); ?>'
+                                                <a target="_blank" data-selected-activity="<?php echo $title_service; ?>" href='#choose-service'
                                                    class="service__btn red-button">
                                                     <svg class="red-button__stroke" xmlns="http://www.w3.org/2000/svg"
                                                          width="238" height="238"

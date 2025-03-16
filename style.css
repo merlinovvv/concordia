@@ -4466,6 +4466,11 @@ body.modal-open{
         width: 50%;
     }
 
+    .day__class a{
+        color: #fff;
+        text-decoration: underline;
+    }
+
     .day__class{
         font-size: 20px;
         font-weight: 400;
