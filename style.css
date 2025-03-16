@@ -1382,10 +1382,21 @@ h6 {
     vertical-align: bottom;
 }
 
+.shedule__table td.activity-cell{
+    cursor: pointer;
+    text-decoration: #B81900 underline;
+    transition: all 0.2s ease 0s;
+}
+
+.shedule__table td.activity-cell:hover{
+    background: rgba(170, 170, 170, 0.5);
+}
+
 .shedule__table tr:first-of-type td {
     border-top: 0;
     border-bottom: 1.5px solid #BB2C09;
     vertical-align: middle;
+    cursor: auto;
 }
 
 .shedule__table tr td:first-of-type {

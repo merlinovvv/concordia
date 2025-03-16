@@ -388,8 +388,9 @@ document.addEventListener("DOMContentLoaded", function () {
         return jsonData;
     }
 
-    const table = document.querySelector(".shedule__table-mobile").querySelector('table');
-    const jsonData = tableToJson(table);
+    const mobileTable = document.querySelector(".shedule__table-mobile").querySelector('table');
+
+    const jsonData = tableToJson(mobileTable);
     const tableContainer = document.querySelector(".shedule__table-mobile")
     if (jsonData) {
         for (let day in jsonData) {
@@ -432,11 +433,35 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>
               </div>`
 
-            table.style.display = 'none'
+            mobileTable.style.display = 'none'
             tableContainer.innerHTML += newBlock
         }
     }
 
+    const table = document.querySelector(".shedule__table").querySelector('table');
+
+    for (let row_i = 0; row_i < table.rows?.length; row_i++) {
+        const row = table.rows[row_i]
+        const cells = row.cells
+
+        for (let cell_i = 0; cell_i < cells?.length; cell_i++) {
+            const cell = cells[cell_i]
+            if (row_i !== 0 && !!cell?.innerHTML?.trim() && cell_i !== 0) {
+                cell.classList.add('activity-cell')
+                const activity = [cell.textContent.replace(/\s+/g, ' ').trim(), table.rows[0]?.cells[cell_i]?.textContent, row?.cells[0]?.textContent]?.join(', ')
+
+                const activityLink = document.createElement('a')
+                activityLink.setAttribute('data-selected-activity', activity)
+                activityLink.setAttribute('href', '#choose-activity')
+                activityLink.style.display = 'none'
+                cell.append(activityLink)
+
+                cell.addEventListener('click', () => {
+                    activityLink.click()
+                })
+            }
+        }
+    }
 });
 
 const mobileServicesBlock = document.querySelector('.main__mobile-content');

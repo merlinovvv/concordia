@@ -187,7 +187,7 @@
         <h1 class="firstscreen__title">
             <span>Concordia</span>
 
-            <a href="#choose-activity" class="firstscreen__btn red-button">
+            <a href="#choose-service" class="firstscreen__btn red-button">
                 <svg class="red-button__stroke" xmlns="http://www.w3.org/2000/svg" width="238" height="238"
                      viewBox="0 0 238 238" fill="none">
                     <path
@@ -559,7 +559,7 @@
             </div>
 
             <div class="sidebar__bottom-content">
-                <a target="_blank" data-selected-activity="" href='#choose-activity' class="sidebar__btn red-button">
+                <a target="_blank" data-selected-activity="" href='#choose-service' class="sidebar__btn red-button">
                     <svg class="red-button__stroke" xmlns="http://www.w3.org/2000/svg" width="238" height="238"
                          viewBox="0 0 238 238" fill="none">
                         <path
@@ -966,7 +966,7 @@
                             </div>
                         </div>
                     </div>
-                    <a target="_blank" href='<?php the_field('instagram_link'); ?>'
+                    <a target="_blank" href='#choose-activity'
                        class="sidebar-schedule__btn red-button">
                         <svg class="red-button__stroke" xmlns="http://www.w3.org/2000/svg" width="238" height="238"
                              viewBox="0 0 238 238" fill="none">
@@ -1486,10 +1486,10 @@
         </div>
         <div class="footer__ellipse"></div>
     </footer>
-    <div id="choose-activity" class="modal">
+    <div id="choose-service" class="modal">
         <div class="modal__window">
             <div class="modal__header">
-                <h3 class="modal__title">Запишіться на заняття</h3>
+                <h3 class="modal__title">Оберіть послугу</h3>
                 <button class="modal__close">×</button>
             </div>
             <div class="modal__content">
@@ -1498,7 +1498,7 @@
                         <input required placeholder="Ваше ім'я" name="Ім'я" type="text" class="modal__input"/>
                         <input required placeholder="Ваше номер телефону" name="Телефон" type="tel" class="modal__input"/>
                         <div class="dropdown">
-                            <input required readonly name="Заняття" type="text" class="dropdown__input" placeholder="Оберіть заняття...">
+                            <input required readonly name="Послуга" type="text" class="dropdown__input" placeholder="Оберіть посугу...">
                             <ul class="dropdown__list">
                                 <?php
                                 $parent_category_id = 6;
@@ -1565,6 +1565,59 @@
                                 } else { ?>
                                     <li class="dropdown__item no-services">Категорії відсутні.</li>
                                 <?php } ?>
+                            </ul>
+                        </div>
+                        <textarea placeholder="Повідомлення для Юлії" name="Повідомлення" id=""
+                                  class="modal__input modal__textarea"></textarea>
+                        <button type="submit" class="modal__button">Надіслати заявку</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="choose-activity" class="modal">
+        <div class="modal__window">
+            <div class="modal__header">
+                <h3 class="modal__title">Запишіться на групові заняття</h3>
+                <button class="modal__close">×</button>
+            </div>
+            <div class="modal__content">
+                <form id="activity-form" method="POST" class="modal__form">
+                    <div class="modal__inputs">
+                        <input required placeholder="Ваше ім'я" name="Ім'я" type="text" class="modal__input"/>
+                        <input required placeholder="Ваше номер телефону" name="Телефон" type="tel" class="modal__input"/>
+                        <div class="dropdown">
+                            <input required readonly name="Заняття" type="text" class="dropdown__input" placeholder="Оберіть групове заняття...">
+                            <ul class="dropdown__list">
+                                <?php
+                                $args = array(
+                                    'category_name' => 'menu_schedule',
+                                    'posts_per_page' => -1,
+                                    // Показать все записи из этой категории
+                                    'orderby' => 'date',
+                                    'order' => 'ASC',
+                                );
+                                $query = new WP_Query($args);
+
+                                if ($query->have_posts()):
+                                    while ($query->have_posts()):
+                                        $query->the_post();
+                                        $toggle_value = get_field('subscription_schedule');
+                                        $image_url = get_field('image_schedule');
+                                        ?>
+                                        <li data-value="<?php the_title(); ?>" class="dropdown__item">
+                                            <img class="dropdown__item-img" src="<?php echo esc_url($image_url); ?>"
+                                                 alt="<?php echo esc_attr($title_service); ?>">
+                                            <div class="dropdown__item-info">
+                                                <div class="dropdown__item-info__title">
+                                                    <?php the_title(); ?>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    <?php endwhile;
+                                endif;
+                                wp_reset_postdata();
+                                ?>
                             </ul>
                         </div>
                         <textarea placeholder="Повідомлення для Юлії" name="Повідомлення" id=""

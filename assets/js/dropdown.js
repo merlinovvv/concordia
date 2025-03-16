@@ -38,8 +38,6 @@ class Dropdown {
      * Открывает/закрывает список
      */
     toggleList() {
-        console.log(123);
-
         const isOpen = this.list.classList.contains('dropdown__list--visible');
 
         document.querySelectorAll('.dropdown__list--visible').forEach(el => {
@@ -70,9 +68,13 @@ class Dropdown {
         this.items.forEach(el => el.classList.remove('dropdown__item--selected'));
 
         const selectedItem = [...this.items].find(el => el.dataset.value === value);
+
         if (selectedItem) {
-            this.input.value = value;
             selectedItem.classList.add('dropdown__item--selected');
+        }
+
+        if (value){
+            this.input.value = value;
         }
 
         this.closeList();
