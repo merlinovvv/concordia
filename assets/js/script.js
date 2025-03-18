@@ -82,9 +82,17 @@ new Swiper('.swiper-services', {
     },
 });
 
-new Swiper('.swiper-mobile-services', {
+const swiperMobileServices = new Swiper('.swiper-mobile-services', {
     spaceBetween: 20,
     slidesPerView: "auto",
+    pagination: {
+        el: ".swiper-mobile-services-pagination",
+        type: "fraction",
+    },
+    navigation: {
+        nextEl: ".nav-bns__next",
+        prevEl: ".nav-bns__pred",
+    },
 });
 
 new Swiper('.swiper-reviews', {
@@ -124,11 +132,50 @@ const sendTelegramMessage = async (message) => {
             type: 'success',
             message: 'Заявка успішно відправлена! Очікуйте відповіді від менеджера.',
         });
+
+        const allModals = document.querySelectorAll('.modal')
+
+        allModals?.forEach(modal => {
+            new Modal().closeModal(modal)
+        })
     }
 };
 
+const servicesSelectModals = [
+    document.getElementById('activity-form'),
+    document.getElementById('service-form')
+];
+
+servicesSelectModals.forEach(modal => {
+    if (!modal) return;
+
+    const nextButton = modal.querySelector('.modal__button');
+    const dropdownInput = modal.querySelector('.dropdown__input');
+
+    if (!nextButton || !dropdownInput) return;
+
+    nextButton.addEventListener('click', () => {
+        const selectedItem = dropdownInput.value?.trim();
+        const sendModal = document.getElementById('send-request');
+        const selectedItemInSendModal = sendModal?.querySelector('.modal__selected-item');
+        const hiddenInSendModal = sendModal?.querySelector('.modal__hidden');
+
+        if (selectedItem && selectedItemInSendModal) {
+            dropdownInput.classList.remove('shake');
+            selectedItemInSendModal.innerHTML = selectedItem;
+            hiddenInSendModal.value = selectedItem;
+            new Modal().openModal(sendModal);
+        } else {
+            dropdownInput.classList.add('shake');
+            // Убираем класс после завершения анимации, чтобы позволить повторную активацию
+            setTimeout(() => dropdownInput.classList.remove('shake'), 500);
+        }
+    });
+});
+
+
 // Отримуємо форму
-const forms = [document.getElementById('contact-form'), document.getElementById('activity-form'), document.getElementById('service-form')];
+const forms = [document.getElementById('send-request-form')];
 
 forms.forEach(form => {
     // Підключаємо обробник події на відправку форми
@@ -318,19 +365,19 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-const scheduleOpenBtn = document.querySelector('.main__btn');
-const scheduleCloseBtn = document.querySelector('.table__btn');
-const servicesSchedule = document.querySelector('.services__schedule')
-
-scheduleOpenBtn.addEventListener('click', function () {
-    servicesSchedule.classList.remove('close');
-    servicesSchedule.classList.add('open');
-})
-
-scheduleCloseBtn.addEventListener('click', function () {
-    servicesSchedule.classList.remove('open');
-    servicesSchedule.classList.add('close');
-})
+// const scheduleOpenBtn = document.querySelector('.main__btn');
+// const scheduleCloseBtn = document.querySelector('.table__btn');
+// const servicesSchedule = document.querySelector('.services__schedule')
+//
+// scheduleOpenBtn.addEventListener('click', function () {
+//     servicesSchedule.classList.remove('close');
+//     servicesSchedule.classList.add('open');
+// })
+//
+// scheduleCloseBtn.addEventListener('click', function () {
+//     servicesSchedule.classList.remove('open');
+//     servicesSchedule.classList.add('close');
+// })
 
 document.addEventListener("DOMContentLoaded", function () {
     const sidebarLinks = document.querySelectorAll(".sidebar__link");
@@ -487,3 +534,39 @@ services.forEach((serviceBlock, index) => {
 
     })
 })
+
+document.addEventListener('DOMContentLoaded', () => {
+    const sortServicesDropdown = document.getElementById('sort-services');
+    const dropdownItems = document.querySelectorAll('.dropdown__item');
+    const swiperSlides = document.querySelectorAll('.services-mobile-slide');
+
+    // 1️⃣ Сохраняем оригинальные слайды
+    const originalSlides = Array.from(swiperSlides).map((slide, index) => ({
+        element: slide,
+        category: slide.dataset.category,
+        index
+    }));
+
+    dropdownItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const value = item.dataset.value;
+            sortServicesDropdown.value = value;
+
+            // 2️⃣ Удаляем все слайды из swiper
+            swiperMobileServices.removeAllSlides();
+
+            // 3️⃣ Фильтруем слайды по категории
+            const filteredSlides = originalSlides
+                .filter(slide => value === 'all' || slide.category === value)
+                .map(slide => slide.element);
+
+            // 4️⃣ Добавляем отфильтрованные слайды обратно
+            swiperMobileServices.appendSlide(filteredSlides);
+
+            // 5️⃣ Обновляем swiper
+            swiperMobileServices.update();
+        });
+    });
+});
+
+

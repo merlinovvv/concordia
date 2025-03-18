@@ -5,6 +5,7 @@ class Dropdown {
     constructor(element) {
         this.dropdown = element;
         this.input = this.dropdown.querySelector('.dropdown__input');
+        this.arrow = this.dropdown.querySelector('.dropdown__arrow');
         this.list = this.dropdown.querySelector('.dropdown__list');
         this.items = this.list.querySelectorAll('.dropdown__item');
 
@@ -16,6 +17,7 @@ class Dropdown {
      */
     init() {
         this.input.addEventListener('click', () => this.toggleList());
+        this.arrow?.addEventListener('click', () => this.toggleList());
 
         this.items.forEach(item => {
             item.addEventListener('click', () => this.selectItem(item.dataset.value));
