@@ -1325,7 +1325,7 @@
                 <div class="main__inputs">
                     <input required placeholder="Ваше ім' я" name="Ім'я" type="text" class="main__input"/>
                     <input required placeholder="Ваше номер телефону" name="Телефон" type="tel" class="main__input"/>
-                    <textarea placeholder="Повідомлення для Юлії" name="Повідомлення" id=""
+                    <textarea placeholder="Додаткова інформація" name="Повідомлення" id=""
                               class="main__input main__textarea"></textarea>
                 </div>
                 <div class="main__postscript">
@@ -1567,7 +1567,7 @@
                                 <?php } ?>
                             </ul>
                         </div>
-                        <textarea placeholder="Повідомлення для Юлії" name="Повідомлення" id=""
+                        <textarea placeholder="Додаткова інформація" name="Повідомлення" id=""
                                   class="modal__input modal__textarea"></textarea>
                         <button type="submit" class="modal__button">Надіслати заявку</button>
                     </div>
@@ -1620,7 +1620,7 @@
                                 ?>
                             </ul>
                         </div>
-                        <textarea placeholder="Повідомлення для Юлії" name="Повідомлення" id=""
+                        <textarea placeholder="Додаткова інформація" name="Повідомлення" id=""
                                   class="modal__input modal__textarea"></textarea>
                         <button type="submit" class="modal__button">Надіслати заявку</button>
                     </div>
