@@ -1505,8 +1505,12 @@
                 <button class="modal__close">×</button>
             </div>
             <div class="modal__content">
-                <div id="service-form"  class="modal__form">
+                <form id="service-form" method="post" class="modal__form">
                     <div class="modal__inputs">
+                        <input required placeholder="Ваше ім'я" name="Ім'я" type="text" class="modal__input"/>
+                        <input required placeholder="Ваш номер телефону" name="Телефон" type="tel" class="modal__input"/>
+                        <textarea placeholder="Додаткова інформація" name="Повідомлення" id=""
+                                  class="modal__input modal__textarea"></textarea>
                         <div class="dropdown">
                             <input required readonly name="Послуга" type="text" class="dropdown__input" placeholder="Оберіть посугу...">
                             <ul class="dropdown__list">
@@ -1577,9 +1581,9 @@
                                 <?php } ?>
                             </ul>
                         </div>
-                        <button class="modal__button">Далі</button>
+                        <button type="submit" class="modal__button">Надіслати заявку</button>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -1590,8 +1594,12 @@
                 <button class="modal__close">×</button>
             </div>
             <div class="modal__content">
-                <div id="activity-form" class="modal__form">
+                <form id="activity-form" method="post" class="modal__form">
                     <div class="modal__inputs">
+                        <input required placeholder="Ваше ім'я" name="Ім'я" type="text" class="modal__input"/>
+                        <input required placeholder="Ваш номер телефону" name="Телефон" type="tel" class="modal__input"/>
+                        <textarea placeholder="Додаткова інформація" name="Повідомлення" id=""
+                                  class="modal__input modal__textarea"></textarea>
                         <div class="dropdown">
                             <input required readonly name="Заняття" type="text" class="dropdown__input" placeholder="Оберіть групове заняття...">
                             <ul class="dropdown__list">
@@ -1626,33 +1634,6 @@
                                 ?>
                             </ul>
                         </div>
-                        <button class="modal__button">Далі</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="send-request" class="modal">
-        <div class="modal__window">
-            <div class="modal__header">
-                <h3 class="modal__title">Залиште нам свої дані</h3>
-                <button class="modal__close">×</button>
-            </div>
-            <div class="modal__content">
-                <div class="modal__content-title">
-                    Ви обрали:
-                    <div class="modal__selected-item">
-
-                    </div>
-                </div>
-
-                <form id="send-request-form" method="POST" class="modal__form">
-                    <div class="modal__inputs">
-                        <input required placeholder="Ваше ім'я" name="Ім'я" type="text" class="modal__input"/>
-                        <input required placeholder="Ваш номер телефону" name="Телефон" type="tel" class="modal__input"/>
-                        <textarea placeholder="Додаткова інформація" name="Повідомлення" id=""
-                                  class="modal__input modal__textarea"></textarea>
-                        <input type="hidden" class="modal__hidden" name="Обрано">
                         <button type="submit" class="modal__button">Надіслати заявку</button>
                     </div>
                 </form>

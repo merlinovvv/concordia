@@ -141,41 +141,42 @@ const sendTelegramMessage = async (message) => {
     }
 };
 
-const servicesSelectModals = [
-    document.getElementById('activity-form'),
-    document.getElementById('service-form')
-];
-
-servicesSelectModals.forEach(modal => {
-    if (!modal) return;
-
-    const nextButton = modal.querySelector('.modal__button');
-    const dropdownInput = modal.querySelector('.dropdown__input');
-
-    if (!nextButton || !dropdownInput) return;
-
-    nextButton.addEventListener('click', () => {
-        const selectedItem = dropdownInput.value?.trim();
-        const sendModal = document.getElementById('send-request');
-        const selectedItemInSendModal = sendModal?.querySelector('.modal__selected-item');
-        const hiddenInSendModal = sendModal?.querySelector('.modal__hidden');
-
-        if (selectedItem && selectedItemInSendModal) {
-            dropdownInput.classList.remove('shake');
-            selectedItemInSendModal.innerHTML = selectedItem;
-            hiddenInSendModal.value = selectedItem;
-            new Modal().openModal(sendModal);
-        } else {
-            dropdownInput.classList.add('shake');
-            // Убираем класс после завершения анимации, чтобы позволить повторную активацию
-            setTimeout(() => dropdownInput.classList.remove('shake'), 500);
-        }
-    });
-});
+// const servicesSelectModals = [
+//     document.getElementById('activity-form'),
+//     document.getElementById('service-form')
+// ];
+//
+// servicesSelectModals.forEach(modal => {
+//     if (!modal) return;
+//
+//     const nextButton = modal.querySelector('.modal__button');
+//     const dropdownInput = modal.querySelector('.dropdown__input');
+//
+//     if (!nextButton || !dropdownInput) return;
+//
+//     nextButton.addEventListener('click', () => {
+//         const selectedItem = dropdownInput.value?.trim();
+//         const sendModal = document.getElementById('send-request');
+//         const selectedItemInSendModal = sendModal?.querySelector('.modal__selected-item');
+//         const hiddenInSendModal = sendModal?.querySelector('.modal__hidden');
+//
+//         if (selectedItem && selectedItemInSendModal) {
+//             dropdownInput.classList.remove('shake');
+//             selectedItemInSendModal.innerHTML = selectedItem;
+//             hiddenInSendModal.value = selectedItem;
+//             new Modal().openModal(sendModal);
+//         } else {
+//             dropdownInput.classList.add('shake');
+//             // Убираем класс после завершения анимации, чтобы позволить повторную активацию
+//             setTimeout(() => dropdownInput.classList.remove('shake'), 500);
+//         }
+//     });
+// });
 
 
 // Отримуємо форму
-const forms = [document.getElementById('send-request-form')];
+
+const forms = [document.getElementById('activity-form'), document.getElementById('service-form')];
 
 forms.forEach(form => {
     // Підключаємо обробник події на відправку форми
@@ -569,4 +570,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+const handlePopState = (event) => {
+    // вместо выхода, можешь показать модалку или выполнить другое действие
+    event.preventDefault();
+    // "Возвращаем" пользователя обратно на ту же страницу
+    window.history.pushState(null, '', window.location.href);
+};
 
+window.history.pushState(null, '', window.location.href);
+window.addEventListener('popstate', handlePopState);
