@@ -1509,8 +1509,6 @@
                     <div class="modal__inputs">
                         <input required placeholder="Ваше ім'я" name="Ім'я" type="text" class="modal__input"/>
                         <input required placeholder="Ваш номер телефону" name="Телефон" type="tel" class="modal__input"/>
-                        <textarea placeholder="Додаткова інформація" name="Повідомлення" id=""
-                                  class="modal__input modal__textarea"></textarea>
                         <div class="dropdown">
                             <input required readonly name="Послуга" type="text" class="dropdown__input" placeholder="Оберіть посугу...">
                             <ul class="dropdown__list">
@@ -1581,6 +1579,8 @@
                                 <?php } ?>
                             </ul>
                         </div>
+                        <textarea placeholder="Додаткова інформація" name="Повідомлення" id=""
+                                  class="modal__input modal__textarea"></textarea>
                         <button type="submit" class="modal__button">Надіслати заявку</button>
                     </div>
                 </form>
@@ -1598,8 +1598,6 @@
                     <div class="modal__inputs">
                         <input required placeholder="Ваше ім'я" name="Ім'я" type="text" class="modal__input"/>
                         <input required placeholder="Ваш номер телефону" name="Телефон" type="tel" class="modal__input"/>
-                        <textarea placeholder="Додаткова інформація" name="Повідомлення" id=""
-                                  class="modal__input modal__textarea"></textarea>
                         <div class="dropdown">
                             <input required readonly name="Заняття" type="text" class="dropdown__input" placeholder="Оберіть групове заняття...">
                             <ul class="dropdown__list">
@@ -1634,6 +1632,8 @@
                                 ?>
                             </ul>
                         </div>
+                        <textarea placeholder="Додаткова інформація" name="Повідомлення" id=""
+                                  class="modal__input modal__textarea"></textarea>
                         <button type="submit" class="modal__button">Надіслати заявку</button>
                     </div>
                 </form>

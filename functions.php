@@ -2,7 +2,7 @@
 add_action('wp_enqueue_scripts', 'concordia_styles');
 add_action('wp_enqueue_scripts', 'concordia_scripts');
 
-$version = '1.0.10';
+$version = '1.0.11';
 
 function concordia_styles()
 {
